@@ -1,6 +1,16 @@
 
 @import "ember-bootstrap/bootstrap";
 
+body {
+  font-size: 14px;
+}
+
 section.main {
-  padding-top: 60px;
+  padding-top: 70px;
+}
+
+.models-table-wrapper {
+  .globalSearch {
+    margin-bottom: 1em;
+  }
 }
