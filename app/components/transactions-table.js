@@ -18,7 +18,7 @@ export default Component.extend({
   columns: computed(function() {
     if (this.transactions.get('length') > 0) {
       return [
-        {propertyName: 'posted'},
+        {propertyName: 'posted', component: 'table-date-cell'},
         {propertyName: 'description'},
         {propertyName: 'amount'},
         {propertyName: 'confirmation'},
