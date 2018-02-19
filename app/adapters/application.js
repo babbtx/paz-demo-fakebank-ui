@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import { pluralize } from 'ember-inflector';
+import { underscore } from '@ember/string';
 import DS from 'ember-data';
 
-const { String: { pluralize, underscore } } = Ember;
 
 export default DS.RESTAdapter.extend({
 
