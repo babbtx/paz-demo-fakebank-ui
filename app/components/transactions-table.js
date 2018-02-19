@@ -20,7 +20,7 @@ export default Component.extend({
       return [
         {propertyName: 'posted', component: 'table-date-cell'},
         {propertyName: 'description'},
-        {propertyName: 'amount'},
+        {propertyName: 'amount', component: 'table-amount-cell'},
         {propertyName: 'confirmation'},
       ];
     }
