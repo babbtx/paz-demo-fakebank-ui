@@ -23,14 +23,14 @@ module.exports = function(deployTarget) {
   if (deployTarget === 'production') {
     ENV.build.environment = 'production';
     // configure other plugins for production deploy target here
-    's3-index': {
+    ENV['s3-index']: {
       accessKeyId: process.env['S3_KEY'],
       secretAccessKey: process.env['S3_SECRET'],
       bucket: "fakebank",
       region: "us-east-1",
       allowOverwrite: true
     },
-    's3': {
+    ENV['s3']: {
       accessKeyId: process.env['S3_KEY'],
       secretAccessKey: process.env['S3_SECRET'],
       bucket: "fakebank",
