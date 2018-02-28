@@ -47,5 +47,8 @@ module.exports = function(environment) {
     // here you can enable a production-specific feature
   }
 
+  // backend
+  ENV.backend = "https://pdg.babbtx.work:8443/scim/v2";
+
   return ENV;
 };
