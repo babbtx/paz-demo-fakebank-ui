@@ -6,7 +6,7 @@ body {
 }
 
 section.main {
-  padding-top: 70px;
+  padding-top: 90px;
 }
 
 .models-table-wrapper {
@@ -17,4 +17,9 @@ section.main {
 
 .transaction-negative {
   color: red;
+}
+
+.navbar-brand, .navbar-brand:hover {
+  text-decoration: none;
+  color: white;
 }
