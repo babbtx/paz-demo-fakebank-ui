@@ -48,9 +48,9 @@ module.exports = function(environment) {
   }
 
   // backend
-  ENV.backend = "https://pdg.babb-dg.ping-eng.com:8443/scim/v2";
-  ENV.oauth_authorization_url = "https://pf.babb-dg.ping-eng.com:9031/as/authorization.oauth2";
-  ENV.oauth_client_id = "fakebank-ui";
+  ENV.backend = process.env['BACKEND'];
+  ENV.oauth_authorization_url = process.env['OAUTH_AUTHORIZATION_URL'];
+  ENV.oauth_client_id = process.env['OAUTH_CLIENT_ID'];
 
   return ENV;
 };
