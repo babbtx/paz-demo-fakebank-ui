@@ -3,7 +3,7 @@
 
 module.exports = function(environment) {
   let ENV = {
-    modulePrefix: 'fakebank-ui',
+    modulePrefix: 'openbank-browser',
     environment,
     rootURL: '/',
     locationType: 'auto',
