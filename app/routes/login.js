@@ -9,7 +9,8 @@ export default Route.extend(UnauthenticatedRouteMixin, {
   beforeModel() {
     const url = `${this.authorizationUrl}?client_id=${this.clientId}`
       + `&redirect_uri=${window.location.origin}/oauth-callback`
-      + "&response_type=token+id_token";
+      + "&scope=accounts"
+      + "&response_type=token";
     window.location.replace(url);
   }
 });
