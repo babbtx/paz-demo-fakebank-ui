@@ -9,6 +9,7 @@ const Router = EmberRouter.extend({
 Router.map(function() {
   this.route('authenticated', {path: 'app'}, function() {
     this.route('transactions', {resetNamespace: true});
+    this.route('accounts', {resetNamespace: true});
   });
   this.route('login');
   this.route('oauth-callback');
