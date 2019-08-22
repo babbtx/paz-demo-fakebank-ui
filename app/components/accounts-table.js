@@ -5,6 +5,9 @@ import BootstrapTheme from 'ember-models-table/themes/bootstrap4';
 const Theme = BootstrapTheme.extend({
   components: {
     'global-filter': 'bootstrap4-global-filter',
+  },
+  messages: {
+    noDataToShow: "Loading..."
   }
 });
 
@@ -17,6 +20,5 @@ export default Component.extend({
     {propertyName: 'accountId'},
     {propertyName: 'accountSubType'},
     {propertyName: 'sortCode'},
-  ],
-
+  ]
 });
