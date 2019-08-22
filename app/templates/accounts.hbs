@@ -1,1 +1,7 @@
+<div class="table-header clearfix">
+  {{#bs-button class="pull-right" onClick=(action "refresh")}}
+    {{fa-icon "refresh"}}
+  {{/bs-button}}
+</div>
+
 {{accounts-table accounts=model}}

@@ -11,8 +11,6 @@ const Theme = BootstrapTheme.extend({
 const theme = new Theme();
 
 export default Component.extend({
-  classNames: ['container'],
-
   theme: theme,
 
   columns: [
