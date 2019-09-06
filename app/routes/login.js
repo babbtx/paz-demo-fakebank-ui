@@ -10,6 +10,7 @@ export default Route.extend(UnauthenticatedRouteMixin, {
     const url = `${this.authorizationUrl}?client_id=${this.clientId}`
       + `&redirect_uri=${window.location.origin}/oauth-callback`
       + "&scope=accounts"
+      + "&prompt=login"
       + "&response_type=token";
     window.location.replace(url);
   }

@@ -13,6 +13,7 @@ Router.map(function() {
     this.route('account', {resetNamespace: true, path: '/account/:account_id'});
   });
   this.route('login');
+  this.route('logout');
   this.route('oauth-callback');
 });
 
