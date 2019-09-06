@@ -1,0 +1,18 @@
+<h4>Account #{{model.accountId}}</h4>
+
+<p></p>
+
+<p>
+  <dl class="row">
+    <dt class="col-sm-3">Type</dt>
+    <dd class="col-sm-9">{{model.accountType}}</dd>
+    <dt class="col-sm-3">Sub Type</dt>
+    <dd class="col-sm-9">{{model.accountSubType}}</dd>
+    <dt class="col-sm-3">Sort Code</dt>
+    <dd class="col-sm-9">{{model.sortCode}}</dd>
+  </dl>
+</p>
+
+<p>
+  {{#link-to "accounts"}}Go back{{/link-to}}
+</p>

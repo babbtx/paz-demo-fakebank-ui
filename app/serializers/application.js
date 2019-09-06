@@ -9,6 +9,7 @@ function lowercaseKeys(object) {
 }
 
 export default DS.JSONSerializer.extend({
+  primaryKey: "accountId",
   normalize(typeClass, hash) {
     hash = lowercaseKeys(hash);
     const result = this._super(typeClass, hash);
@@ -24,7 +25,8 @@ export default DS.JSONSerializer.extend({
     return result;
   },
   normalizeSingleResponse(store, primaryModelClass, payload, id, requestType) {
-    payload = payload.Data[_.capitalize(primaryModelClass.modelName)];
+    payload = payload.Data[_.capitalize(primaryModelClass.modelName)][0];
+    payload.type = "account";
     const result = this._super(store, primaryModelClass, payload, id, requestType);
     return result;
   }

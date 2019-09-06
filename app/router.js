@@ -10,6 +10,7 @@ Router.map(function() {
   this.route('authenticated', {path: 'app'}, function() {
     this.route('transactions', {resetNamespace: true});
     this.route('accounts', {resetNamespace: true});
+    this.route('account', {resetNamespace: true, path: '/account/:account_id'});
   });
   this.route('login');
   this.route('oauth-callback');
