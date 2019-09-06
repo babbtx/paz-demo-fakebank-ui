@@ -17,7 +17,7 @@ export default Component.extend({
   theme: theme,
 
   columns: [
-    {propertyName: 'accountId'},
+    {propertyName: 'accountId', component: 'table-account-id-cell'},
     {propertyName: 'accountType'},
     {propertyName: 'accountSubType'},
     {propertyName: 'sortCode'},
