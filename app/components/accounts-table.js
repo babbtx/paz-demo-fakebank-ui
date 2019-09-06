@@ -18,6 +18,7 @@ export default Component.extend({
 
   columns: [
     {propertyName: 'accountId'},
+    {propertyName: 'accountType'},
     {propertyName: 'accountSubType'},
     {propertyName: 'sortCode'},
   ]

@@ -3,6 +3,7 @@ import { alias } from '@ember/object/computed';
 
 export default DS.Model.extend({
   accountId: DS.attr('number'),
+  accountType: DS.attr('string'),
   accountSubType: DS.attr('string'),
   account: DS.attr(),
   sortCode: alias('account.identification')
