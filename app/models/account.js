@@ -6,5 +6,5 @@ export default DS.Model.extend({
   accountType: DS.attr('string'),
   accountSubType: DS.attr('string'),
   account: DS.attr(),
-  sortCode: alias('account.identification')
+  accountSortCode: alias('account.identification')
 });
