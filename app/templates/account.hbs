@@ -1,15 +1,19 @@
-<h4>Account #{{model.accountId}}</h4>
+<h4>Account #{{account.accountId}}</h4>
 
 <p></p>
 
 <p>
   <dl class="row">
     <dt class="col-sm-3">Type</dt>
-    <dd class="col-sm-9">{{model.accountType}}</dd>
-    <dt class="col-sm-3">Sub Type</dt>
-    <dd class="col-sm-9">{{model.accountSubType}}</dd>
+    <dd class="col-sm-9">{{account.accountType}}</dd>
+    <dt class="col-sm-3">Sub-Type</dt>
+    <dd class="col-sm-9">{{account.accountSubType}}</dd>
     <dt class="col-sm-3">Sort Code</dt>
-    <dd class="col-sm-9">{{model.sortCode}}</dd>
+    <dd class="col-sm-9">{{account.accountSortCode}}</dd>
+{{#if balance}}
+  <dt class="col-sm-3">Balance</dt>
+  <dd class="col-sm-9">{{balance.balanceAmount}}</dd>
+{{/if}}
   </dl>
 </p>
 
