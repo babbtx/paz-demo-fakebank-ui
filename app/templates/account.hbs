@@ -1,4 +1,9 @@
-<h4>Account #{{account.accountId}}</h4>
+<div class="table-header clearfix">
+  {{#bs-button class="pull-right btn-outline-dark btn-light" onClick=(action "refresh")}}
+    {{fa-icon "refresh"}}
+  {{/bs-button}}
+  <h4>Account #{{accountId}}</h4>
+</div>
 
 <p></p>
 
@@ -10,10 +15,10 @@
     <dd class="col-sm-9">{{account.accountSubType}}</dd>
     <dt class="col-sm-3">Sort Code</dt>
     <dd class="col-sm-9">{{account.accountSortCode}}</dd>
-{{#if balance}}
-  <dt class="col-sm-3">Balance</dt>
-  <dd class="col-sm-9">{{balance.balanceAmount}}</dd>
-{{/if}}
+    {{#if balance}}
+      <dt class="col-sm-3">Balance</dt>
+      <dd class="col-sm-9">{{balance.balanceAmount}}</dd>
+    {{/if}}
   </dl>
 </p>
 

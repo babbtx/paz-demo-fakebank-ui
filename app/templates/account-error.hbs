@@ -1,3 +1,16 @@
+<div class="table-header clearfix">
+  {{#bs-button class="pull-right btn-outline-dark btn-light" onClick=(action "refresh")}}
+    {{fa-icon "refresh"}}
+  {{/bs-button}}
+  <h4>Account #{{accountId}}</h4>
+</div>
+
+<p></p>
+
 {{#bs-alert dismissible=false type="warning"}}
   <strong>Not authorized!</strong>
 {{/bs-alert}}
+
+<p>
+  {{#link-to "accounts"}}Go back{{/link-to}}
+</p>
