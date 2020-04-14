@@ -9,6 +9,10 @@ export default DS.RESTAdapter.extend(DataAdapterMixin, {
   host: ENV.backend,
   history: service('api-history'),
 
+  isInvalid(status, headers, payload) {
+    return status >= 400 && status < 500 && Array.isArray(payload.errors);
+  },
+
   authorize(xhr) {
     let { access_token } = this.get('session.data.authenticated');
     if (isPresent(access_token)) {

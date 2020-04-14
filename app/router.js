@@ -10,6 +10,9 @@ Router.map(function() {
   this.route('authenticated', {path: 'app'}, function() {
     this.route('accounts', {resetNamespace: true}, function() {
       this.route('show', {path: ':account_id'});
+    }),
+    this.route('transfers', {resetNamespace: true}, function() {
+      this.route('new', {path: ''});
     })
   });
   this.route('login');

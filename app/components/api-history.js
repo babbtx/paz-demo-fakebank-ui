@@ -28,7 +28,12 @@ export default Component.extend({
     const array = this.get('history').get('history');
     for ( ; this.index < array.length; this.index++) {
       let item = array.objectAt(this.index);
-      this.$().prepend(`<pre>${prettyPrintJson.toHtml(item.response)}</pre>`);
+      if (item.response) {
+        this.$().prepend(`<pre>${prettyPrintJson.toHtml(item.response)}</pre>`);
+      }
+      else {
+        this.$().prepend('<i>Response has no content</i><br>');
+      }
       this.$().prepend(`<p><pre>${item.method} ${item.url} => ${item.status}</pre></p>`);
     }
   }
