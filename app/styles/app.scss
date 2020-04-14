@@ -33,7 +33,16 @@ body > .ember-view {
   padding-bottom: 12px;
 }
 
-#main-content .container {
+.table-header h5 {
+  line-height: 34px;
+  height: 34px;
+}
+
+#main-content .main-content-tabs {
+  padding-top: 20px;
+}
+
+#main-content .main-content-outlet {
   padding-top: 20px;
   padding-bottom: 45px;
 }

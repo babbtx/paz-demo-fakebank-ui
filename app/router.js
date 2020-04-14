@@ -8,9 +8,9 @@ const Router = EmberRouter.extend({
 
 Router.map(function() {
   this.route('authenticated', {path: 'app'}, function() {
-    this.route('transactions', {resetNamespace: true});
-    this.route('accounts', {resetNamespace: true});
-    this.route('account', {resetNamespace: true, path: '/account/:account_id'});
+    this.route('accounts', {resetNamespace: true}, function() {
+      this.route('show', {path: ':account_id'});
+    })
   });
   this.route('login');
   this.route('logout');
