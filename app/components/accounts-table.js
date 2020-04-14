@@ -1,5 +1,4 @@
 import Component from '@ember/component';
-import { computed } from '@ember/object';
 import BootstrapTheme from 'ember-models-table/themes/bootstrap4';
 
 const Theme = BootstrapTheme.extend({
