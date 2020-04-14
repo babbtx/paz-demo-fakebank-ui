@@ -7,12 +7,16 @@ export default Route.extend({
 
   setupController(controller, model) {
     this.set("transfer", model);
+    this.set("transfer.saving", false); // FIXME why is isSaving not working??
     return this._super(...arguments);
   },
 
   actions: {
     submitTransfer() {
-      this.get("transfer").save().catch(function() {});
+      this.set("transfer.saving", true);
+      this.get("transfer").save()
+        .catch(() => {})
+        .finally(() => { this.set("transfer.saving", false); })
     }
   }
 });
