@@ -1,12 +1,17 @@
 
 @import "ember-bootstrap/bootstrap";
 
-body {
+body, html {
   font-size: 14px;
+  height: 100%;
 }
 
-section.main {
-  padding-top: 90px;
+body > .ember-view {
+  height: 100%;
+}
+
+.full-height {
+  height: 100%;
 }
 
 .models-table-wrapper {
@@ -28,12 +33,19 @@ section.main {
   padding-bottom: 12px;
 }
 
-#main-content {
+#main-content .container {
+  padding-top: 20px;
   padding-bottom: 45px;
 }
 
 #main-api-history {
   font-size: 0.85em;
-  background-color: #e1e9ff;
-  box-shadow: 0px 0px 10px 2px rgba(50,50,50,0.2);
+  background-color: #dddddd;
+  -webkit-box-shadow: inset 10px 0px 15px -10px rgba(0,0,0,1);
+  -moz-box-shadow: inset 10px 0px 15px -10px rgba(0,0,0,1);
+  box-shadow: inset 10px 0px 15px -10px rgba(0,0,0,1);
+}
+
+#main-api-history .container {
+  padding-left: 40px;
 }
