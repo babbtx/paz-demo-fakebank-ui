@@ -1,5 +1,6 @@
 import Adapter from './application';
+import ENV from '../config/environment';
 
 export default Adapter.extend({
-  namespace: 'OpenBanking/v2'
+  namespace: ENV.openbanking_base_path
 });
