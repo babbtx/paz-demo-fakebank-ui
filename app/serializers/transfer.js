@@ -2,11 +2,11 @@ import DS from 'ember-data';
 import { underscore } from '@ember/string';
 
 export default DS.JSONAPISerializer.extend({
-  keyForAttribute(key, method) {
+  keyForAttribute(key) {
     return underscore(key);
   },
 
-  extractErrors(store, typeClass, payload, id) {
+  extractErrors(store, typeClass, payload) {
     /*
     FROM JSON-API format:
 

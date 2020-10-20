@@ -6,17 +6,17 @@
       {{form.element label="Amount" type="text" controlType="text" placeholder="Amount without currency" property="amount" required=true}}
       {{#bs-button type="primary" buttonType="submit" disabled=model.saving}}Transfer{{/bs-button}}
 
-    <div class="alerts-container">
-      {{#unless model.errors.isEmpty}}
-        {{#unless model.saving}}
-          {{#each model.errors.messages as |message|}}
-            {{#bs-alert dismissible=false type="warning"}}
-              <strong>{{message}}</strong>
-            {{/bs-alert}}
-          {{/each}}
+      <div class="alerts-container">
+        {{#unless model.errors.isEmpty}}
+          {{#unless model.saving}}
+            {{#each model.errors.messages as |message|}}
+              {{#bs-alert dismissible=false type="warning"}}
+                <strong>{{message}}</strong>
+              {{/bs-alert}}
+            {{/each}}
+          {{/unless}}
         {{/unless}}
-      {{/unless}}
-    </div>
+      </div>
 
     {{/bs-form}}
   </div>
