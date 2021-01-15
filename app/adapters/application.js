@@ -6,7 +6,7 @@ import DataAdapterMixin from 'ember-simple-auth/mixins/data-adapter-mixin';
 import ENV from '../config/environment';
 
 export default DS.RESTAdapter.extend(DataAdapterMixin, {
-  host: ENV.backend,
+  host: ENV.OPEN_BANKING_BASE_URL,
   history: service('api-history'),
 
   isInvalid(status, headers, payload) {

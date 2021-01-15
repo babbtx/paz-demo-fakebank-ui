@@ -47,11 +47,10 @@ module.exports = function(environment) {
     // here you can enable a production-specific feature
   }
 
-  // backend
-  ENV.backend = process.env['BACKEND'];
-  ENV.openbanking_base_path = process.env['OPENBANKING_BASE_PATH'];
-  ENV.oauth_authorization_url = process.env['OAUTH_AUTHORIZATION_URL'];
-  ENV.oauth_client_id = process.env['OAUTH_CLIENT_ID'];
+  ENV.OPEN_BANKING_BASE_URL = process.env.OPEN_BANKING_BASE_URL;
+  ENV.OPEN_BANKING_API_NAMESPACE = process.env.OPEN_BANKING_API_NAMESPACE;
+  ENV.OAUTH2_AUTHORIZATION_URL = process.env.OAUTH2_AUTHORIZATION_URL;
+  ENV.OAUTH2_CLIENT_ID = process.env.OAUTH2_CLIENT_ID;
 
   return ENV;
 };

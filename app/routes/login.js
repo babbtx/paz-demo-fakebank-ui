@@ -3,15 +3,14 @@ import UnauthenticatedRouteMixin from 'ember-simple-auth/mixins/unauthenticated-
 import ENV from '../config/environment';
 
 export default Route.extend(UnauthenticatedRouteMixin, {
-  authorizationUrl: ENV.oauth_authorization_url,
-  clientId: ENV.oauth_client_id,
-
   beforeModel() {
-    const url = `${this.authorizationUrl}?client_id=${this.clientId}`
+    const url = `${ENV.OAUTH2_AUTHORIZATION_URL}?client_id=${ENV.OAUTH2_CLIENT_ID}`
       + `&redirect_uri=${window.location.origin}/oauth-callback`
       + "&scope=accounts"
       + "&prompt=login"
-      + "&response_type=token";
+      + "&response_type=token"
+      + `&nonce=${Math.floor(Math.random() * Number.MAX_SAFE_INTEGER)}`
+    ;
     window.location.replace(url);
   }
 });
