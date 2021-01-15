@@ -2,7 +2,7 @@
 
 module.exports = function(environment) {
   let ENV = {
-    modulePrefix: 'openbank-browser',
+    modulePrefix: 'dg-demo-fakebank-ui',
     environment,
     rootURL: '/',
     locationType: 'auto',
