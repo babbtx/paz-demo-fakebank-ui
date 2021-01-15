@@ -72,7 +72,7 @@ Run:
 
 PingFederate must be configured for this OAuth Client as follows:
 * Client ID matches `OAUTH2_CLIENT_ID` in `.env`
-* Redirect URI is `http://localhost:4200/`
+* Redirect URI is `http://localhost:4200/oauth-callback`
 * Supported scopes must include `accounts`
 * `Implicit` grant type
 * Access token contains a `sub` claim (required for the backend API)
