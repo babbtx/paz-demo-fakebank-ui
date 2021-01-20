@@ -35,7 +35,7 @@ Please see https://gitlab.corp.pingidentity.com/davidbabbitt/pingdata-lab-docker
 for a Docker Compose environment that includes PingDirectory for consent 
 storage and PingDataGovernance setup as reverse proxy to the backend API.
 
-## Install, Configure, Run
+## Install, Configure, Run, Deploy
 
 ### Prerequisites
 
@@ -68,11 +68,24 @@ Run:
 1. `ember s`
 1. `open http://localhost:4200`
 
+### Compile and Deploy
+
+Compile:
+1. `git pull` (if cloned previously)
+1. `nvm use v10` (because this Ember app is kinda old)
+1. `yarn`
+1. `ember build -e production`
+
+Customize:
+1. Copy `dist/assets/example.config.js` to `dist/assets/config.js` and customize.
+
+Deploy to any webserver.
+
 ## Configure PingFederate
 
 PingFederate must be configured for this OAuth Client as follows:
-* Client ID matches `OAUTH2_CLIENT_ID` in `.env`
-* Redirect URI is `http://localhost:4200/oauth-callback`
+* Client ID matches `OAUTH2_CLIENT_ID` in `.env` or `config.js`
+* Redirect URI is `http://localhost:4200/*` or your webserver
 * Supported scopes must include `accounts`
 * `Implicit` grant type
 * Access token contains a `sub` claim (required for the backend API)

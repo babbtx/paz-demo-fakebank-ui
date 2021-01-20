@@ -9,16 +9,39 @@
 
     {{content-for "head"}}
 
-    <link integrity="" rel="stylesheet" href="{{rootURL}}assets/vendor.css">
-    <link integrity="" rel="stylesheet" href="{{rootURL}}assets/dg-demo-fakebank-ui.css">
+    <link integrity="" rel="stylesheet" href="./assets/vendor.css">
+    <link integrity="" rel="stylesheet" href="./assets/dg-demo-fakebank-ui.css">
 
     {{content-for "head-footer"}}
   </head>
   <body>
+    <!-- it's ok if this doesn't exist. it's a way to override the compiled configuration. -->
+    <script src="./assets/config.js"></script>
+
+    <script type="text/javascript">
+      // this gets environment from meta and replaces the rootURL
+      // with the URL this page is loaded on
+      // and optionally replaces some environment configuration
+      // with values from config.js
+      (function() {
+        var meta = document.querySelector('head meta[name="dg-demo-fakebank-ui/config/environment"]');
+        var env = meta.content;
+        var envj = JSON.parse(decodeURIComponent(env));
+        envj.rootURL = window.location.pathname;
+        // replace environment variables
+        if (typeof(RuntimeConfig) !== "undefined") {
+          Object.keys(RuntimeConfig).forEach(function(key) {
+            envj[key] = RuntimeConfig[key];
+          });
+        }
+        meta.content = encodeURIComponent(JSON.stringify(envj));
+      })();
+    </script>
+
     {{content-for "body"}}
 
-    <script src="{{rootURL}}assets/vendor.js"></script>
-    <script src="{{rootURL}}assets/dg-demo-fakebank-ui.js"></script>
+    <script src="./assets/vendor.js"></script>
+    <script src="./assets/dg-demo-fakebank-ui.js"></script>
 
     {{content-for "body-footer"}}
   </body>

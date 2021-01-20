@@ -8,6 +8,12 @@ module.exports = function(defaults) {
       'bootstrapVersion': 4,
       'importBootstrapFont': false,
       'importBootstrapCSS': false
+    },
+    fingerprint: {
+      exclude: ['assets/config.js', 'assets/example.config.js']
+    },
+    'ember-cli-uglify': {
+      exclude: ['assets/config.js', 'assets/example.config.js']
     }
   });
 

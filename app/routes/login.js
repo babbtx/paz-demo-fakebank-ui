@@ -5,7 +5,7 @@ import ENV from '../config/environment';
 export default Route.extend(UnauthenticatedRouteMixin, {
   beforeModel() {
     const url = `${ENV.OAUTH2_AUTHORIZATION_URL}?client_id=${ENV.OAUTH2_CLIENT_ID}`
-      + `&redirect_uri=${window.location.origin}/oauth-callback`
+      + `&redirect_uri=${encodeURIComponent(window.location.origin + ENV.rootURL + '#/oauth-callback')}`
       + "&scope=accounts"
       + "&prompt=login"
       + "&response_type=token"
