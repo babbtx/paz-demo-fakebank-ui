@@ -83,14 +83,31 @@ Deploy to any webserver.
 
 ## Configure PingFederate
 
-PingFederate must be configured for this OAuth Client as follows:
-* Client ID matches `OAUTH2_CLIENT_ID` in `.env` or `config.js`
-* Redirect URI is `http://localhost:4200/*` or your webserver
-* Supported scopes must include `accounts`
-* `Implicit` grant type
-* Access token contains a `sub` claim (required for the backend API)
-* Access token may require another attribute in order to match a user in
-PingDirectory, if that's required for your demo
+If you are using PingFederate as the OAuth server,
+configure your environment as follows:
+
+* OAuth client uses the `Implicit` grant type
+* OAuth client ID in PingFederate matches `OAUTH2_CLIENT_ID` configured in `.env` or `dist/assets/config.js`
+* The `OAUTH2_AUTHORIZATION_URL` configured in `.env` or `dist/assets/config.js` is your PingFederate authorization URL
+* OAuth redirect URI is `http://localhost:4200/oauth-callback.html`
+* Allowed scopes must include `accounts`
+* The access token contains a `sub` attribute. This is required for the backend API.
+* The access token contains an `email` attribute. This is required for PingDataGovernance to find
+the "token owner" in PingDirectory. 
+
+## Configure PingOne
+
+If you are using PingOne as the OAuth server,
+configure your environment as follows:
+
+* OAuth client uses the `Implicit` grant type
+* The `OAUTH2_CLIENT_ID` configured in `.env` or `dist/assets/config.js` matches your assigned Client ID in PingOne
+* The `OAUTH2_AUTHORIZATION_URL` configured in `.env` or `dist/assets/config.js` is your PingOne tenant authorization URL
+* OAuth redirect URI is `http://localhost:4200/oauth-callback.html`
+* Allowed scopes must include `accounts`
+* The access token contains a `sub` attribute. This is required for the backend API.
+* The access token contains an `email` attribute. This is required for PingDataGovernance to find
+  the "token owner" in PingDirectory.
 
 ## Building, Hacking
 
