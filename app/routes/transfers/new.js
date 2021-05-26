@@ -2,21 +2,32 @@ import Route from '@ember/routing/route';
 
 export default Route.extend({
   model() {
-    return this.store.createRecord("transfer");
+    if (this.get("copyOfRecentTransfer")) {
+      const copyOfRecentTransfer = this.get("copyOfRecentTransfer");
+      this.set("copyOfRecentTransfer", null);
+      return copyOfRecentTransfer;
+    }
+    else {
+      return this.store.createRecord("transfer");
+    }
   },
 
-  setupController(controller, model) {
-    this.set("transfer", model);
-    this.set("transfer.saving", false); // FIXME why is isSaving not working??
-    return this._super(...arguments);
+  cloneModel() {
+    const model = this.modelFor(this.routeName);
+    const copy = this.store.createRecord("transfer");
+    model.eachAttribute(attr => copy.set(attr, model.get(attr)));
+    return copy;
   },
 
   actions: {
     submitTransfer() {
-      this.set("transfer.saving", true);
-      this.get("transfer").save()
-        .catch(() => {})
-        .finally(() => { this.set("transfer.saving", false); })
+      const model = this.modelFor(this.routeName);
+      const copyOfRecentTransfer = this.cloneModel();
+      model.save()
+        .then(() => {
+          this.set("copyOfRecentTransfer", copyOfRecentTransfer);
+          this.refresh();
+        });
     }
   }
 });
