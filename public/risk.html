@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Risk Dial</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link integrity="" rel="stylesheet" href="./assets/vendor.css">
+    <link integrity="" rel="stylesheet" href="./assets/dg-demo-fakebank-ui.css">
+    <style type="text/css">
+      body.container {
+        padding-top: 40px;
+      }
+    </style>
+  </head>
+  <body class="container">
+    <script src="./assets/pureknob.js"></script>
+    <script src="./assets/config.js"></script>
+    <div class="row">
+      <div class="col-lg-6">
+        <h2 class="display-4">Risk</h2>
+        <p class="lead">
+          Use the dial below to simulate user or client risk.
+        </p>
+        <hr class="my-2">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6">
+        <div id="dial"></div>
+      </div>
+    </div>
+  <script type="text/javascript">
+    // create and configure the dial
+    const colors = [ "#9dad24", "#ffe251", "#B8232F"];
+    const knob = pureknob.createKnob(300, 300);
+    knob.setProperty('angleStart', -0.75 * Math.PI);
+    knob.setProperty('angleEnd', 0.75 * Math.PI);
+    knob.setProperty('colorFG', colors[0]);
+    knob.setProperty('colorBG', '#dddddd');
+    knob.setProperty('trackWidth', 0.35);
+    knob.setProperty('valMin', 0);
+    knob.setProperty('valMax', 100);
+
+    // init the value
+    knob.setValue(30);
+
+    // function that changes the color
+    const changeColor = (_, value) => {
+      if (value <= 33) {
+        knob.setProperty('colorFG', colors[0]);
+      }
+      else if (value <= 66) {
+        knob.setProperty('colorFG', colors[1]);
+      }
+      else {
+        knob.setProperty('colorFG', colors[2]);
+      }
+    };
+    knob.addListener(changeColor);
+
+    // save the risk score to the webdis server
+    const saveValue = (_, value) => {
+      const config = window.RuntimeConfig || {};
+      const baseUrl = config.WEBDIS_BASE_URL || "http://localhost:7379";
+      const riskUrl = `${baseUrl}/SET/risk/${value}`;
+      fetch(riskUrl)
+        .then((response) => {
+          console.log("SAVE RESPONSE %o", response);
+        })
+        .catch((error) => {
+          console.warn("SAVE ERROR %o", error);
+        })
+    };
+    knob.addListener(saveValue);
+
+    // add to DOM
+    const node = knob.node();
+    document.getElementById('dial').appendChild(node);
+  </script>
+  </body>
+</html>

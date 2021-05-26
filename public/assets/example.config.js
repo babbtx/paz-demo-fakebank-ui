@@ -32,4 +32,9 @@
    * The client id this app will use to identify itself to the authorization server.
    */
   // window.RuntimeConfig.OAUTH2_CLIENT_ID = "fakebank-ui";
+
+  /*
+   * Webdis service where risk.html will store simulated risk.
+   */
+  // window.RuntimeConfig.WEBDIS_BASE_URL = "http://localhost:7379";
 })(window);
