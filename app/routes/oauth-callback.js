@@ -10,7 +10,7 @@ export default Route.extend(OAuth2ImplicitGrantCallbackMixin, {
     // but we've changed app behavior to not redirect into Ember and instead
     // redirect to a static html page that saves the parsed hash to local storage.
 
-    // load that here and complete the authenticatication with that.
+    // load that here and complete the authentication with that.
     const encodedHash = window.localStorage.getItem('fakebank-ui-oauth-hash');
     const parsedHash = encodedHash ? JSON.parse(encodedHash) : {error: 'Hmm, something went wrong.'};
 
