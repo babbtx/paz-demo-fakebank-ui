@@ -13,7 +13,10 @@ Router.map(function() {
     }),
     this.route('transfers', {resetNamespace: true}, function() {
       this.route('new', {path: ''});
-    })
+    }),
+    this.route('offers', {resetNamespace: true}, function() {
+
+    });
   });
   this.route('login');
   this.route('logout');
