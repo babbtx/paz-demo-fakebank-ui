@@ -1,0 +1,7 @@
+{{page-title hasRefresh=true onRefresh=(action "refresh")}}
+
+<div class="card-deck">
+  {{#each model as |offer|}}
+    {{offer-card offer=offer}}
+  {{/each}}
+</div>
