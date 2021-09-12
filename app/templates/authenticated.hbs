@@ -3,12 +3,19 @@
     {{nav-bar}}
     <section class="main-content-tabs container">
       {{#bs-nav type="tabs" as |nav|}}
-        {{#nav.item}}
-          {{#nav.link-to "accounts"}}Accounts{{/nav.link-to}}
-        {{/nav.item}}
-        {{#nav.item}}
-          {{#nav.link-to "transfers.new"}}Transfer{{/nav.link-to}}
-        {{/nav.item}}
+
+        {{#if model.accounts}}
+          {{#nav.item}}
+            {{#nav.link-to "accounts"}}Accounts{{/nav.link-to}}
+          {{/nav.item}}
+        {{/if}}
+
+        {{#if model.transfers}}
+          {{#nav.item}}
+            {{#nav.link-to "transfers.new"}}Transfer{{/nav.link-to}}
+          {{/nav.item}}
+        {{/if}}
+
       {{/bs-nav}}
     </section>
     <section class="main-content-outlet container">
