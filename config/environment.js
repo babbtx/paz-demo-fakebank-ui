@@ -26,7 +26,7 @@ module.exports = function(environment) {
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
-    // ENV.APP.LOG_TRANSITIONS = true;
+    ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
   }
@@ -45,6 +45,7 @@ module.exports = function(environment) {
 
   if (environment === 'production') {
     // here you can enable a production-specific feature
+    ENV.APP.LOG_TRANSITIONS = true;
   }
 
   ENV.OPEN_BANKING_BASE_URL = process.env.OPEN_BANKING_BASE_URL;

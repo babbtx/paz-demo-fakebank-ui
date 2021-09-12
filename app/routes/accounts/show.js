@@ -2,6 +2,17 @@ import Route from '@ember/routing/route';
 import RSVP  from 'rsvp';
 
 export default Route.extend({
+  isPermitted() {
+    const permissions = this.modelFor('authenticated');
+    return !!permissions.accounts;
+  },
+
+  beforeModel() {
+    if (!this.isPermitted()) {
+      this.replaceWith('');
+    }
+  },
+
   model(params) {
     this.set('accountId', params.account_id);
 

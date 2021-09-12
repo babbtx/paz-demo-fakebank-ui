@@ -1,6 +1,17 @@
 import Route from '@ember/routing/route';
 
 export default Route.extend({
+  isPermitted() {
+    const permissions = this.modelFor('authenticated');
+    return !!permissions.transfers;
+  },
+
+  beforeModel() {
+    if (!this.isPermitted()) {
+      this.replaceWith('');
+    }
+  },
+
   model() {
     if (this.get("copyOfRecentTransfer")) {
       const copyOfRecentTransfer = this.get("copyOfRecentTransfer");
