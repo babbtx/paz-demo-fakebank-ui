@@ -1,39 +1,53 @@
-# PingDataGovernance Banking Demo
+# PingAuthorize Banking Demo
 
-This project is a simple web frontend for a broker or teller app that allows us to demonstrate
-some of the capabilities of PingDataGovernance for dynamic authorization and data protection
-within a bank platform.
+This project is a simple web frontend for a bank that allows us to demonstrate
+some of the capabilities of PingAuthorize for dynamic entitlement, dynamic authorization,
+and data protection within a bank platform.
 
 ## Demo
 
-You will be accessing the app as though you are a broker, teller,
-or financial advisor. Unseen to your audience, you will actually
-login to the app using the credentials of the banking customer.
+You will login to the app using the credentials of the banking customer.
+
+In most demos will pretend as through you are a broker, teller,
+or financial advisor. Unseen to your audience, you will login to the app
+as the banking customer before starting your demo. This side-steps a whole
+conversation about delegated authorization.
 
 On the first tab you see the banking customer's accounts.
+This tab works well for the delegated access scenario.
 You can drill down to each account and see balances.
-Within PingDataGovernance, you can demonstrate using policy
+Within PingAuthorize, you can demonstrate using policy
 to deny access to specific accounts (for example, based on the
 banking customer's authorized consent) and/or you can demonstrate
 using policy to filter or mask data.
 
 On the second tab you have a generic form to transfer money
-between any two accounts, by number. Within PingDataGovernance,
-you can demonstrate using policy logic to allow or deny transfers.
+between any two accounts, by number. This tab works well
+for either self-service or delegated access. 
+Within PingAuthorize, you can demonstrate using
+policy logic to allow or deny transfers.
 For example, you can use a hard arbitrary limit, you can
-check whether the user's profile is complete, you can
-compare the attempted transfer to a running average or recent
-transfers, and so on.
+check whether the user's profile is complete, you can check
+risk scores, you can compare the attempted transfer
+to a running average or recent transfers, and so on.
+
+On the third tab you have a simple view of offers.
+This tab works well for self-service. Within PingAuthorize,
+you can demonstrate policy that shows offers based on
+entitlement, account balances, transaction history, and so on.
+
+Additionally, you can demonstrate showing and hiding tabs based
+on the permissions returned from the bank API after login.
 
 ## The Backend API
 
 Please see https://github.com/babbtx/mock-simple-aspsp for the backend API.
 
-## PingDirectory Consent and PingDataGovernance Policies
+## PingDirectory Consent and PingAuthorize Policies
 
 Please see https://gitlab.corp.pingidentity.com/davidbabbitt/pingdata-lab-docker/-/tree/demos/fakebank
 for a Docker Compose environment that includes PingDirectory for consent 
-storage and PingDataGovernance setup as reverse proxy to the backend API.
+storage and PingAuthorize setup as reverse proxy to the backend API.
 
 ## Install, Configure, Run, Deploy
 
@@ -65,7 +79,7 @@ Run:
 1. `git pull` (if cloned previously)
 1. `nvm use v10` (because this Ember app is kinda old)
 1. `yarn`
-1. `ember s`
+1. `npm start`
 1. `open http://localhost:4200`
 
 ### Compile and Deploy
@@ -92,7 +106,7 @@ configure your environment as follows:
 * OAuth redirect URI is `http://localhost:4200/oauth-callback.html`
 * Allowed scopes must include `accounts`
 * The access token contains a `sub` attribute. This is required for the backend API.
-* The access token contains an `email` attribute. This is required for PingDataGovernance to find
+* The access token contains an `email` attribute. This is required for PingAuthorize to find
 the "token owner" in PingDirectory. 
 
 ## Configure PingOne
@@ -106,7 +120,7 @@ configure your environment as follows:
 * OAuth redirect URI is `http://localhost:4200/oauth-callback.html`
 * Allowed scopes must include `accounts`
 * The access token contains a `sub` attribute. This is required for the backend API.
-* The access token contains an `email` attribute. This is required for PingDataGovernance to find
+* The access token contains an `email` attribute. This is required for PingAuthorize to find
   the "token owner" in PingDirectory.
 
 ## Building, Hacking

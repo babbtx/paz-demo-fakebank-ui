@@ -13,7 +13,7 @@
 
   /*
    * The ASPSP API base url (https host and port).
-   * If you change this to point to your API Gateway or PingDataGovernance,
+   * If you change this to point to your API Gateway or PingAuthorize,
    * make sure to set the CORS policy to allow access from your webserver.
    */
   // window.RuntimeConfig.OPEN_BANKING_BASE_URL = "https://babbtx-aspsp.herokuapp.com";
