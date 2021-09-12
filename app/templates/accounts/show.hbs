@@ -1,9 +1,6 @@
-<div class="table-header clearfix">
-  {{#bs-button class="pull-right btn-outline-dark btn-light" onClick=(action "refresh")}}
-    {{fa-icon "refresh"}}
-  {{/bs-button}}
+{{#page-title hasRefresh=true onRefresh=(action "refresh")}}
   <h5>{{#link-to "accounts"}}Accounts{{/link-to}} > #{{accountId}}</h5>
-</div>
+{{/page-title}}
 
 <p></p>
 

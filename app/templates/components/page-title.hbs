@@ -1,0 +1,8 @@
+<div class="table-header clearfix">
+  {{#if hasRefresh}}
+    {{#bs-button class="pull-right btn-outline-dark btn-light" onClick=onRefresh}}
+      {{fa-icon "refresh"}}
+    {{/bs-button}}
+  {{/if}}
+  {{yield}}
+</div>
