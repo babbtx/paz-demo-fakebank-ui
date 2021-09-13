@@ -10,12 +10,14 @@ Router.map(function() {
   this.route('authenticated', {path: 'app'}, function() {
     this.route('accounts', {resetNamespace: true}, function() {
       this.route('show', {path: ':account_id'});
-    }),
+    });
+    this.route('transactions', {resetNamespace: true}, function() {
+      this.route('account-transactions', {path: 'for_account/:account_id'});
+    });
     this.route('transfers', {resetNamespace: true}, function() {
       this.route('new', {path: ''});
-    }),
+    });
     this.route('offers', {resetNamespace: true}, function() {
-
     });
   });
   this.route('login');

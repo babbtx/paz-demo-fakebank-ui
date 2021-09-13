@@ -6,7 +6,10 @@ export default Component.extend({
   classNameBindings: ['colorize'],
 
   amount: computed(function() {
-    const value = this.record.get(this.column.propertyName);
+    let value = this.record.get(this.column.propertyName);
+    if (typeof(value) !== 'number') {
+      value = Number.parseFloat(value.toString().replaceAll(',',''));
+    }
     if (value >= 0)
       return `$ ${value.toFixed(2)}`;
     else
@@ -14,7 +17,10 @@ export default Component.extend({
   }),
 
   colorize: computed(function() {
-    const value = this.record.get(this.column.propertyName);
+    let value = this.record.get(this.column.propertyName);
+    if (typeof(value) !== 'number') {
+      value = Number.parseFloat(value.toString().replaceAll(',',''));
+    }
     if (value >= 0)
       return '';
     else

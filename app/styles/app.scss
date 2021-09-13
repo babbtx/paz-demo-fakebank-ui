@@ -20,6 +20,40 @@ body > .ember-view {
   }
 }
 
+.transactions-table {
+  .table-column-date {
+    width: 15%;
+    max-width: 100px;
+  }
+  .table-column-merchant {
+    width: 20%;
+    max-width: 100px;
+  }
+  tbody td.table-column-merchant {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .table-column-description {
+    width: 50%;
+    max-width: 150px;
+  }
+  tbody td.table-column-description {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .table-column-amount {
+    width: 15%;
+    max-width: 40px;
+  }
+  tbody td.table-column-amount {
+    text-align: right;
+  }
+  tbody td {
+    font-size: 0.75em;
+  }
+}
 .transaction-negative {
   color: red;
 }
