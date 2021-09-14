@@ -37,4 +37,10 @@
    * Webdis service where risk.html will store simulated risk.
    */
   // window.RuntimeConfig.WEBDIS_BASE_URL = "http://localhost:7379";
+
+  /*
+   * URL from which to get the user's permissions.
+   * If the URL returns any error then default permissions are used.
+   */
+  // window.RuntimeConfig.PERMISSIONS_URL = undefined;
 })(window);

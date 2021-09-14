@@ -52,6 +52,7 @@ module.exports = function(environment) {
   ENV.OPEN_BANKING_API_NAMESPACE = process.env.OPEN_BANKING_API_NAMESPACE;
   ENV.OAUTH2_AUTHORIZATION_URL = process.env.OAUTH2_AUTHORIZATION_URL;
   ENV.OAUTH2_CLIENT_ID = process.env.OAUTH2_CLIENT_ID;
+  ENV.PERMISSIONS_URL = process.env.PERMISSIONS_URL;
 
   return ENV;
 };
