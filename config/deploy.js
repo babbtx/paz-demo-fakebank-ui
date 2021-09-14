@@ -26,15 +26,16 @@ module.exports = function(deployTarget) {
     ENV['s3-index'] = {
       accessKeyId: process.env['S3_KEY'],
       secretAccessKey: process.env['S3_SECRET'],
-      bucket: "fakebank.babbtx.work",
+      bucket: process.env['S3_BUCKET'],
       region: "us-east-1",
       allowOverwrite: true
     },
     ENV['s3'] = {
       accessKeyId: process.env['S3_KEY'],
       secretAccessKey: process.env['S3_SECRET'],
-      bucket: "fakebank.babbtx.work",
-      region: "us-east-1"
+      bucket: process.env['S3_BUCKET'],
+      region: "us-east-1",
+      filePattern: '**/*.{html,js,css,png,gif,ico,jpg,map,xml,txt,svg,swf,eot,ttf,woff,woff2,otf,wasm,json}'
     }
   }
 
