@@ -40,7 +40,7 @@
 
   /*
    * URL from which to get the user's permissions.
-   * If the URL returns any error then default permissions are used.
+   * If no URL is defined then default permissions are used.
    */
   // window.RuntimeConfig.PERMISSIONS_URL = undefined;
 })(window);

@@ -20,7 +20,7 @@ module.exports = function(deployTarget) {
     // configure other plugins for staging deploy target here
   }
 
-  if (deployTarget === 'production') {
+  if (deployTarget === 's3') {
     ENV.build.environment = 'production';
     // configure other plugins for production deploy target here
     ENV['s3-index'] = {
@@ -29,7 +29,7 @@ module.exports = function(deployTarget) {
       bucket: process.env['S3_BUCKET'],
       region: "us-east-1",
       allowOverwrite: true
-    },
+    };
     ENV['s3'] = {
       accessKeyId: process.env['S3_KEY'],
       secretAccessKey: process.env['S3_SECRET'],

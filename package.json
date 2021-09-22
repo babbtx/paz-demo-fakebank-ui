@@ -15,7 +15,7 @@
     "lint:hbs": "ember-template-lint .",
     "start": "ember server",
     "test": "ember test",
-    "deploy": "ember deploy production --activate true"
+    "deploy": "ember deploy s3 --activate true"
   },
   "devDependencies": {
     "@ember/jquery": "^0.5.2",
