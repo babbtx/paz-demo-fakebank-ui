@@ -58,7 +58,7 @@ This section describes how to run the compiled single-page app in an NGINX conta
 Build the Docker image with the compiled app within. This takes a couple of minutes:
 
 ```
-docker build -t fakebank-ui -f Dockerfile-nginx
+docker build -t fakebank-ui -f Dockerfile-nginx .
 ```
 
 ### Run
