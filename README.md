@@ -39,9 +39,9 @@ entitlement, account balances, transaction history, and so on.
 Additionally, you can demonstrate showing and hiding tabs based
 on the permissions returned from the bank API after login.
 
-## The Backend API
+## The Bank API
 
-Please see https://github.com/babbtx/mock-simple-aspsp for the backend API.
+Please see https://github.com/babbtx/mock-simple-aspsp for the Bank API.
 
 ## PingDirectory Consent and PingAuthorize Policies
 
@@ -49,7 +49,56 @@ Please see https://gitlab.corp.pingidentity.com/davidbabbitt/pingdata-lab-docker
 for a Docker Compose environment that includes PingDirectory for consent 
 storage and PingAuthorize setup as reverse proxy to the backend API.
 
-## Install, Configure, Run, Deploy
+## Compile, Configure, Run
+
+This section describes how to run the compiled single-page app in an NGINX container.
+
+### Build
+
+Build the Docker image with the compiled app within. This takes a couple of minutes:
+
+```
+docker build -t fakebank-ui -f Dockerfile-nginx
+```
+
+### Run
+
+To run the compiled app using the default configuration:
+
+```
+docker run --rm --name fakebank-ui -p :8443:443 fakebank-ui
+open https://localhost:8443
+```
+
+### Configure for PingOne
+
+To use your own PingOne environment and/or your own deployment of the Bank API,
+configure your PingOne environment as follows:
+
+* OAuth client uses the `Implicit` grant type
+* OAuth redirect URI is `https://localhost:8443/oauth-callback.html` (or whatever port mapping you choose when you run it)
+* Allowed scopes must include `accounts`
+* The access token contains a `sub` attribute. This is required for the backend API.
+* The access token contains an `email` attribute. This is required for the PingAuthorize demos to find the "token owner" in PingDirectory. 
+
+Run the Docker container using the following environment variables:
+
+* `OAUTH2_CLIENT_ID` matches your assigned Client ID in PingOne
+* `OAUTH2_AUTHORIZATION_URL` is your PingOne tenant authorization URL
+* `OPEN_BANKING_BASE_URL` is the base URL of the Bank API. The default is `https://babbtx-aspsp.herokuapp.com`. You would change this if you deployed your own copy of the Bank API or if you are proxying the BANK API through another API Gateway or PingAuthorize.
+* `OPEN_BANKING_API_NAMESPACE` is the OpenBanking API path, relative to the base URL. The default is `OpenBanking/v2`. You might change this is you are proxying the Bank API through another API Gateawy or PingAuthorize.
+* `PERMISSIONS_URL` is the full URL to the "permissions API" used after application login in order to detmerine the user's feature-level permissions. There is no default, which makes the application use default permissions. If you deployed your own copy of the Bank API, you would change this to something like `https://your.herokuapp.com/private/permissions`
+
+For example, to run against your own deployed Bank API and use the "permissions check" feature after login:
+
+```
+docker run --rm --name fakebank-ui -p :8443:443 -e OPEN_BANKING_BASE_URL=https://your.herokuapp.com -e PERMISSIONS_URL=https://your.herokuapp.com/private/permissions fakebank-ui 
+open https://localhost:8443
+```
+
+## Develop and Deploy
+
+This section describes how to develop and deploy this EmberJS app.
 
 ### Prerequisites
 
@@ -64,10 +113,6 @@ Get the prereqs (on a Mac):
 
 ### Running from Source
 
-Get the source:
-1. `git clone <repository-url>` this repository
-1. `cd dg-demo-fakebank-ui`
-
 Customize for your environment:
 * Copy `.env-example` to `.env` and customize.
 
@@ -76,7 +121,7 @@ directly to the backend API. This obviously needs to change
 to route API calls through DG or an API Gateway for your demo.
 
 Run:
-1. `git pull` (if cloned previously)
+1. `git pull` (make sure you're up to date)
 1. `nvm use v10` (because this Ember app is kinda old)
 1. `yarn`
 1. `npm start`
@@ -85,74 +130,52 @@ Run:
 ### Compile and Deploy
 
 Compile:
-1. `git pull` (if cloned previously)
+1. `git pull` (make sure you're up to date)
 1. `nvm use v10` (because this Ember app is kinda old)
 1. `yarn`
 1. `ember build -e production`
 
-Customize:
+Customize for your environment:
 1. Copy `dist/assets/example.config.js` to `dist/assets/config.js` and customize.
 
-Deploy to any webserver.
+Deploy the contents of `dist` to any webserver.
 
-## Configure PingFederate
+### Configure PingFederate
 
 If you are using PingFederate as the OAuth server,
 configure your environment as follows:
 
 * OAuth client uses the `Implicit` grant type
-* OAuth client ID in PingFederate matches `OAUTH2_CLIENT_ID` configured in `.env` or `dist/assets/config.js`
-* The `OAUTH2_AUTHORIZATION_URL` configured in `.env` or `dist/assets/config.js` is your PingFederate authorization URL
+* OAuth client ID in PingFederate matches `OAUTH2_CLIENT_ID` configured in `.env`
+* The `OAUTH2_AUTHORIZATION_URL` configured in `.env` is your PingFederate authorization URL
 * OAuth redirect URI is `http://localhost:4200/oauth-callback.html`
 * Allowed scopes must include `accounts`
 * The access token contains a `sub` attribute. This is required for the backend API.
-* The access token contains an `email` attribute. This is required for PingAuthorize to find
-the "token owner" in PingDirectory. 
+* The access token contains an `email` attribute. This is required for the PingAuthorize demos to find the "token owner" in PingDirectory. 
 
-## Configure PingOne
+For production:
+* The environment variables are configured in `dist/assets/config.js`
+* The OAuth redirect URI should match your webserver
+
+
+### Configure PingOne
 
 If you are using PingOne as the OAuth server,
 configure your environment as follows:
 
 * OAuth client uses the `Implicit` grant type
-* The `OAUTH2_CLIENT_ID` configured in `.env` or `dist/assets/config.js` matches your assigned Client ID in PingOne
-* The `OAUTH2_AUTHORIZATION_URL` configured in `.env` or `dist/assets/config.js` is your PingOne tenant authorization URL
+* The `OAUTH2_CLIENT_ID` in `.env` matches your assigned Client ID in PingOne
+* The `OAUTH2_AUTHORIZATION_URL` in `.env` is your PingOne tenant authorization URL
 * OAuth redirect URI is `http://localhost:4200/oauth-callback.html`
 * Allowed scopes must include `accounts`
 * The access token contains a `sub` attribute. This is required for the backend API.
-* The access token contains an `email` attribute. This is required for PingAuthorize to find
-  the "token owner" in PingDirectory.
+* The access token contains an `email` attribute. This is required for the PingAuthorize demos to find the "token owner" in PingDirectory. 
 
-## Building, Hacking
+For production:
+* The environment variables are configured in `dist/assets/config.js`
+* The OAuth redirect URI should match your webserver
 
-This is a standard EmberJS application (if a bit out of date.)
-The following is boilderplate from Ember.
-
-### Code Generators
-
-Make use of the many generators for code, try `ember help generate` for more details
-
-### Running Tests
-
-* `ember test`
-* `ember test --server`
-
-### Linting
-
-* `npm run lint:hbs`
-* `npm run lint:js`
-* `npm run lint:js -- --fix`
-
-### Building
-
-* `ember build` (development)
-* `ember build --environment production` (production)
-
-### Deploying
-
-Specify what it takes to deploy your app.
-
-## Further Reading / Useful Links
+### Further Reading / Useful Links
 
 * [ember.js](https://emberjs.com/)
 * [ember-cli](https://ember-cli.com/)
