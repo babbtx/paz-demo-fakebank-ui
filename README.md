@@ -85,14 +85,13 @@ Run the Docker container using the following environment variables:
 
 * `OAUTH2_CLIENT_ID` matches your assigned Client ID in PingOne
 * `OAUTH2_AUTHORIZATION_URL` is your PingOne tenant authorization URL
-* `OPEN_BANKING_BASE_URL` is the base URL of the Bank API. The default is `https://babbtx-aspsp.herokuapp.com`. You would change this if you deployed your own copy of the Bank API or if you are proxying the Bank API through another API Gateway or PingAuthorize.
+* `OPEN_BANKING_BASE_URL` is the base URL of the Bank API. The default is `https://bank-api.dev`. You would change this if you deployed your own copy of the Bank API or if you are proxying the Bank API through another API Gateway or PingAuthorize.
 * `OPEN_BANKING_API_NAMESPACE` is the OpenBanking API path, relative to the base URL. The default is `OpenBanking/v2`. You might change this is you are proxying the Bank API through another API Gateway or PingAuthorize.
-* `PERMISSIONS_URL` is the full URL to the "permissions API" used after application login in order to detmerine the user's feature-level permissions. There is no default, which makes the application use default permissions. If you deployed your own copy of the Bank API, you would change this to something like `https://your.herokuapp.com/private/permissions`
 
-For example, to run against your own deployed Bank API and use the "permissions check" feature after login:
+For example, to run against your own deployed Bank API:
 
 ```
-docker run --rm --name fakebank-ui -p :8443:443 -e OPEN_BANKING_BASE_URL=https://your.herokuapp.com -e PERMISSIONS_URL=https://your.herokuapp.com/private/permissions fakebank-ui 
+docker run --rm --name fakebank-ui -p :8443:443 -e OPEN_BANKING_BASE_URL=https://your.herokuapp.com fakebank-ui 
 open https://localhost:8443
 ```
 

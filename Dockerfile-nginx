@@ -34,6 +34,7 @@ RUN openssl req -new \
     -out /etc/ssl/certs/https.csr
 
 # https cert
+RUN mkdir -p /etc/ssl/private
 RUN openssl x509 -req \
     -in /etc/ssl/certs/https.csr \
     -CA CA.crt -CAkey CA.key -CAcreateserial \
@@ -46,12 +47,11 @@ ENV NGINX_ENVSUBST_TEMPLATE_DIR=/etc/nginx/templates
 ENV NGINX_ENVSUBST_OUTPUT_DIR=/usr/share/nginx/html/assets
 
 # some defaults
-ENV OPEN_BANKING_BASE_URL=https://babbtx-aspsp.herokuapp.com
+ENV OPEN_BANKING_BASE_URL=https://bank-api.dev
 ENV OPEN_BANKING_API_NAMESPACE=OpenBanking/v2
 ENV OAUTH2_AUTHORIZATION_URL=https://auth.pingone.com/7e308ffc-4f09-43be-9574-78c41fe4ac85/as/authorize
 ENV OAUTH2_CLIENT_ID=395766d7-bf38-43ff-80f9-74006e38393c
 ENV WEBDIS_BASE_URL=""
-ENV PERMISSIONS_URL=""
 
 # the compiled SPA
 COPY --from=0 /src/dist/ /usr/share/nginx/html/
