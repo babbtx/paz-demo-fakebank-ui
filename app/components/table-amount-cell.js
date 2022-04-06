@@ -11,9 +11,9 @@ export default Component.extend({
       value = Number.parseFloat(value.toString().replaceAll(',',''));
     }
     if (value >= 0)
-      return `$ ${value.toFixed(2)}`;
+      return `${value.toFixed(2)}`;
     else
-      return `$(${(-1 * value).toFixed(2)})`;
+      return `(${(-1 * value).toFixed(2)})`;
   }),
 
   colorize: computed(function() {
