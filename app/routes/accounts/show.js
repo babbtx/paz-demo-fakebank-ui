@@ -2,6 +2,8 @@ import Route from '@ember/routing/route';
 import RSVP  from 'rsvp';
 
 export default Route.extend({
+  accountId: null,
+
   isPermitted() {
     const permissions = this.modelFor('authenticated');
     return !!permissions.accounts;
@@ -30,7 +32,7 @@ export default Route.extend({
   },
 
   setupController(controller, hash) {
-    controller.set('accountId', this.get('accountId'));
+    controller.set('accountId', this.accountId);
     controller.set('account', hash.account.value);
     if (hash.balance.value) {
       controller.set('balance', hash.balance.value);
@@ -39,11 +41,12 @@ export default Route.extend({
 
   actions: {
     refreshAccount() {
+      console.log('Reloading account');
       this.refresh();
     },
     error(error) {
       // HACK passing the accountId to the error route via the error object
-      error.accountId = this.get('accountId');
+      error.accountId = this.accountId;
       return true;
     }
   }

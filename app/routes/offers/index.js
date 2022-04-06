@@ -13,12 +13,13 @@ export default Route.extend({
   },
 
   model() {
-    return this.store.findAll("offer", {reload: true});
+    return this.store.findAll('offer', {reload: true});
   },
 
   actions: {
     refreshOffers() {
-      this.store.unloadAll("offer");
+      console.log('Reloading offers');
+      this.store.unloadAll('offer');
       this.refresh();
     }
   }
