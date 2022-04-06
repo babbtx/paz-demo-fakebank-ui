@@ -1,0 +1,30 @@
+{{#page-title hasRefresh=true onRefresh=(action "refresh")}}
+
+  {{#bs-nav type="pills" as |nav|}}
+    {{#nav.item}}
+      <h5>Transactions ></h5>
+    {{/nav.item}}
+    {{#nav.dropdown direction="down" as |dd|}}
+      {{#dd.toggle}}
+        <span class="h5">
+          {{#if isAccountSelected}}
+            #{{selectedAccountId}}
+          {{else}}
+            Choose Account &hellip;
+          {{/if}}
+        </span>
+        <span class="caret"></span>
+      {{/dd.toggle}}
+      {{#dd.menu as |ddm|}}
+        {{#each model as |account|}}
+          {{#ddm.item}}
+            {{#ddm.link-to "transactions.account-transactions" account.id}}{{account.id}}{{/ddm.link-to}}
+          {{/ddm.item}}
+        {{/each}}
+      {{/dd.menu}}
+    {{/nav.dropdown}}
+  {{/bs-nav}}
+
+{{/page-title}}
+
+{{outlet}}

@@ -10,6 +10,12 @@
           {{/nav.item}}
         {{/if}}
 
+        {{#if model.transactions}}
+          {{#nav.item}}
+            {{#nav.link-to "transactions"}}Transactions{{/nav.link-to}}
+          {{/nav.item}}
+        {{/if}}
+
         {{#if model.transfers}}
           {{#nav.item}}
             {{#nav.link-to "transfers.new"}}Transfer{{/nav.link-to}}
