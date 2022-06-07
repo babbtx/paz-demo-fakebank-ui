@@ -21,7 +21,18 @@ to deny access to specific accounts (for example, based on the
 banking customer's authorized consent) and/or you can demonstrate
 using policy to filter or mask data.
 
-On the second tab you have a generic form to transfer money
+On the second tab you can choose from any of the customer's
+accounts and drill down to see transactions.
+This tab also works well for the delegated access scenario,
+especially for limiting access to larger data sets.
+Within PingAuthorize, you can demonstrate using policy
+to modify the API query in order to limit results
+(customers sometimes call this "row-level")
+and also to modify the results to limit attributes
+(customers sometimes call this "cell-level").
+You can also demonstrate using policy to mask data.
+
+On the third tab you have a generic form to transfer money
 between any two accounts, by number. This tab works well
 for either self-service or delegated access. 
 Within PingAuthorize, you can demonstrate using
@@ -31,12 +42,13 @@ check whether the user's profile is complete, you can check
 risk scores, you can compare the attempted transfer
 to a running average or recent transfers, and so on.
 
-On the third tab you have a simple view of offers.
+On the fourth tab you have a simple view of offers.
 This tab works well for self-service. Within PingAuthorize,
 you can demonstrate policy that shows offers based on
 entitlement, account balances, transaction history, and so on.
 
-Additionally, you can demonstrate showing and hiding tabs based
+Additionally, for feature-level entitlements,
+you can demonstrate showing and hiding tabs based
 on the permissions returned from the bank API after login.
 
 ## The Bank API
